@@ -170,6 +170,11 @@ class Limit(Expr):
 
 
     @property
+    def bound_symbols(self):
+        return (self.args[1],)
+
+
+    @property
     def free_symbols(self):
         e = self.args[0]
         isyms = e.free_symbols
