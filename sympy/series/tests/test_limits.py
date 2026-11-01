@@ -780,6 +780,13 @@ def test_issue_9205():
     assert Limit(-x**2 + y, x**2, a).free_symbols == {y, a}
 
 
+def test_issues_30913():
+    x, y, a = symbols('x, y, a')
+    assert Limit(x + y, x, 0).bound_symbols == (x,)
+    assert Limit(sin(x), x, a, '-').bound_symbols == (x,)
+    assert Limit(x + y, x + y, a).bound_symbols == (x + y,)
+
+
 def test_issue_9471():
     assert limit(((27**(log(n,3)))/n**3),n,oo) == 1
     assert limit(((27**(log(n,3)+1))/n**3),n,oo) == 27
